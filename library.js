@@ -19,31 +19,69 @@ function addBookToLibrary(book) {
     myLibrary.push(book)
 }
 
-function displayBooks() {
+
+function displayBooks(book) {
     let body = document.getElementById("body")
-    for (const book of myLibrary) {
-        let card = document.createElement('div')
-        let card_body = document.createElement('div')
-        let card_title = document.createElement('h4')
-        let card_author = document.createElement('h6')
-        let card_text = document.createElement('p')
-        card.classList.add('card', 'my-3')
-        card_body.classList.add('card-body')
-        card_title.classList.add('card-title')
-        card_author.classList.add('card-title')
-        card_text.classList.add('card-text')
-        card_title.innerHTML = book.title
-        card_author.innerHTML = `By ${book.author}`
-        body.appendChild(card)
-        card.appendChild(card_body)
-        card_body.appendChild(card_title)
-        card_body.appendChild(card_author)
-        card_body.appendChild(card_text)
-    }
+    let card = document.createElement('div')
+    let card_body = document.createElement('div')
+    let card_title = document.createElement('h4')
+    let card_author = document.createElement('h6')
+    let card_pageNum = document.createElement('h6')
+
+    let close = document.createElement('button')
+    close.type = 'button'
+    let index = myLibrary.findIndex(e => e === book)
+    close.setAttribute('libraryIndex', index)
+
+    card.classList.add('card', 'my-3')
+    card_body.classList.add('card-body')
+    card_title.classList.add('card-title')
+    card_author.classList.add('card-title')
+    card_pageNum.classList.add('card-title')
+    close.classList.add('card_close', 'btn-close')
+    //close.onclick = deletes
+    card_title.innerHTML = book.title
+    card_author.innerHTML = `By ${book.author}`
+    card_pageNum.innerHTML = `Number of Pages: ${book.page_num}`
+
+    body.appendChild(card)
+    card.appendChild(card_body)
+    card_body.appendChild(card_title)
+    card_body.appendChild(card_author)
+    card_body.appendChild(card_pageNum)
+    card_body.appendChild(close)
+
+    
 }
 
-let book1 = new Book("The Hobbit", "Tolkian", "10", false)
-let book2 = new Book("The Hunger Games", "Collins", "300", true)
-addBookToLibrary(book1)
-addBookToLibrary(book2)
-displayBooks()
+let new_book_form = document.getElementById('new_book_form')
+new_book_form.addEventListener('submit', e => {
+    e.preventDefault()
+    let title = document.getElementById('title')
+    let author = document.getElementById('author')
+    let page_num = document.getElementById('page_num')
+    let checkbox_status = document.getElementById('read_check').checked 
+    let book = new Book(title.value, author.value, page_num.value, checkbox_status)
+    addBookToLibrary(book)
+    displayBooks(book)
+    new_book_form.reset()
+    
+})
+
+/*
+function deletes() {
+    console.log(index)
+}
+*/
+
+
+let cards = document.getElementsByClassName('card_close')
+    Array.from(cards).forEach(e => {
+    e.addEventListener('click', () => {
+        console.log(e)
+    })
+    });
+
+
+    
+

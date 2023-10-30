@@ -27,26 +27,26 @@
                     </div>
                     <!--Body-->
                     <div class="modal-body">
-                        <form action="#">
+                        <form action="" id="new_book_form">
                             <div class="mb-3 mt-3">
                                 <label for="title" class="form-label"></label>
-                                <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+                                <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
                             </div>
                             <div class="mb-3">
                                 <label for="author" class="form-label"></label>
-                                <input type="text" class="form-control" id="author" placeholder="Author" name="author">
+                                <input type="text" class="form-control" id="author" placeholder="Author" name="author" required>
                             </div>
                             <div class="mb-3">
                                 <label for="page_num" class="form-label"></label>
-                                <input type="number" class="form-control" id="page_num" placeholder="Number of Pages" name="number_of_pages">
+                                <input type="number" class="form-control" id="page_num" placeholder="Number of Pages" name="number_of_pages" required>
                             </div>
                             <div class="form-check mb-3 d-flex flex-row p-0">
                                 
                                 <label for="read_check" class="form-check-label m-0">Have you finished the book?</label>
-                                <input id="read_check" class="form-check-input ms-2" type="checkbox" name="read">
+                                <input id="read_check" class="form-check-input ms-2" type="checkbox" name="read" value="">
                                 
                             </div>
-                            <button type="submit" class="btn btn-primary">Add to Library</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add to Library</button>
                     </div>
                     <!--Footer-->
                     <div class="modal-footer">
