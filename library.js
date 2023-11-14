@@ -1,16 +1,18 @@
 const myLibrary = []
 
-function Book(title, author, page_num, read) {
-    this.title = title
-    this.author = author
-    this.page_num = page_num
-    this.read = read
-    this.info = function() {
-        if (read == true) {
-            return `${this.title} by ${this.author}, ${page_num} pages, finshed reading`
-        }
-        else {
-            return `${this.title} by ${this.author}, ${page_num} pages, not yet read`
+class Book {
+    constructor(title, author, page_num, read) {
+        this.title = title
+        this.author = author
+        this.page_num = page_num
+        this.read = read
+    }
+
+    changeReadStatus() {
+        if (this.read) {
+            this.read = false
+        } else {
+            this.read = true
         }
     }
 }
@@ -23,13 +25,6 @@ function removeBookFromLibrary(bookIndex) {
     myLibrary.splice(bookIndex, 1)
 }
 
-Book.prototype.changeReadStatus = function () {
-    if (this.read) {
-        this.read = false
-    } else {
-        this.read = true
-    }
-}
 
 function displayBooks(book) {
     let body = document.getElementById("body")
